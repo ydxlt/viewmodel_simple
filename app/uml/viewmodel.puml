@@ -1,0 +1,46 @@
+@startuml
+
+class ViewModelProvider {
+   get() ViewModel
+}
+
+class ViewModelStore {
+    put()
+    get() ViewModel
+    clear()
+}
+
+abstract class ViewModel {
+    onCleared()
+}
+
+class AndroidViewModel {
+    getApplication()
+}
+
+interface Factory {
+    create() ViewModel
+}
+
+class ViewModelProviders {
+
+}
+
+ViewModelProvider <-- ViewModelProviders
+
+ViewModel <|-- AndroidViewModel
+
+ViewModel <-- ViewModelProvider
+
+ViewModelProvider *-- ViewModelStore
+ViewModelProvider *-- Factory
+
+class NewInstanceFactory
+class AndroidViewModelFactory
+
+Factory <|.. NewInstanceFactory
+NewInstanceFactory <|-- AndroidViewModelFactory
+
+ViewModelStore "1" o-- "many" ViewModel
+
+@enduml

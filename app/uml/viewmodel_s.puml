@@ -1,0 +1,9 @@
+@startuml
+
+ViewModelProviders -> ViewModelProvider: of()
+
+ViewModelProvider --> ViewModel: get()
+
+FragmentActivity -> ViewModel:onDestroy()
+
+@enduml
